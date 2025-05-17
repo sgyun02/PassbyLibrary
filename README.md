@@ -72,7 +72,7 @@ You can view the final project report(Korean) here:
 ## 🎥 Demo Video
 
 You can watch the demo video(Korean) here:
-[🎥 Download Video (mp4)](./project_video)
+[🎥 Watch Video (mp4)](./project_video.mp4)
 
 ---
 
