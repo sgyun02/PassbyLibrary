@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>스쳐가는 도서관 - 스도(부산)</title>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
+        <style>
+            body {
+                font-family: 'Noto Sans KR', sans-serif;
+            }
+            #exp, #extra {
+                display: none; /* 초기화면 div 숨기기 */
+            }
+            h1 {
+                padding: 10px 50px 5px 15px;
+                border-left: 23px solid rgb(114, 243, 250);
+                margin: 0 0 5px 0;
+            }
+            .highlight{
+                font-size: 1.5em;
+                color:rgb(181, 219, 252)
+            }
+            .ib {
+                display: inline-block;
+            }
+            nav {
+                margin: 0 0 0 60px;
+                border-style: solid double;
+                border-width: 9px; /* 선의 두께 설정 */
+                border-color: rgb(167, 233, 255);
+                text-align: center;
+                font-size: 21px;
+                font-weight: 600;
+            }
+            nav > a {
+                margin: 0 20px;
+                color: rgb(11, 186, 255);
+            }
+            a {
+                text-decoration: none;
+            }
+            nav a:visited, nav a:hover {
+                color: royalblue;
+            }
+            h3::before {
+                content: "📚";
+                font-size: 1.5em;
+                margin-right: 3px;
+            }
+            #exp {
+                margin: 8px 0 40px 60px;
+            }
+            section > div > h3 {
+                display: inline-block;
+                margin: 20px 20px 10px 30px;
+            }
+            #busan {
+                border: solid 1px;
+                border-radius: 2px;
+                padding: 2px 20px;
+                margin-right: 10px;
+                margin-left: 20px;
+            }
+            select {
+                padding: 8px 20px 6px 8px;
+                margin-right: 20px;
+                margin-left: 15px;
+            }
+            img {
+                float: left;
+                margin: 20px 40px 10px 40px;
+                width: 40%;
+            }
+            select + input {
+                width: 100px;
+                height: 30px;
+            }
+            #main {
+                border: solid;
+                margin: 15px 15px 0 10px;
+            }
+            h3 + span {
+                margin: 0 90px 0 20px;
+            }
+            input + ul {
+                text-align: center;
+                list-style-type: none;
+                padding-left: 0;
+                font-size: larger;
+            }
+            #names > li {
+                margin-bottom: 15px;
+            }
+            label > a {
+                color: rgb(85, 144, 255);
+            }
+            label > a:hover, label > a:visited {
+                color: black;
+            }
+            span + input {
+                margin-right: 40px;
+            }
+            #map {
+                clear: left;
+                float: left;
+                margin: 20px 0 0 30px;
+                width:700px;
+                height:350px;
+            }
+            #mapExtra {
+                float: left;
+                text-align: center;
+                margin: 30px 70px;
+            }
+            article {
+                clear: left;
+            }
+            #aboutBooks {
+                float: left;
+                border: solid;
+                padding: 0 0 0 3px;
+                margin: 20px 0 0 10px;
+                text-align: center;
+            }
+            h4 + ol {
+                padding-left: 25px;
+            }
+            ol li {
+                margin-bottom: 5px;
+            }
+            div + input {
+                margin: 20px 0 0 20px;
+            }
+            #extra {
+                margin: 25px 0 0 90px;
+                text-align: center;
+            }
+            a[href*=index] {
+                margin-top: 5px;
+                padding-left: 10px;
+            }
+            span + ul > li > a {
+                color: rgb(44, 44, 44)
+            }
+            span + ul > li > a:hover {
+                color: darkblue;
+            }
+            textarea::first-line {
+                font-size: larger;
+                color: skyblue;
+            }
+            textarea {
+                margin: 15px 0 0 20px;
+                font-family: 'Noto Sans KR', sans-serif;
+                font-size: 20px;
+            }
+            #firstNote {
+                margin: 10px 0px 0 210px;
+            }
+            #fourth > form > input {
+                margin: 10px 0 0 285px;
+            }
+            #fifth {
+                float: right;
+            }
+            table + input {
+                margin: 10px 3px 10px 3px;
+            }
+            th:nth-child(1) {
+                width: 150px;
+            }
+            th:nth-child(2) {
+                width: 200px;
+            }
+            th:nth-child(3) {
+                width: 300px;
+            }
+            td {
+                width: inherit;
+            }
+            input[type="text"] {
+                width: 95%;
+                text-align: center;
+            }
+            footer {
+                clear: both;
+                text-align: right;
+                margin-top: 60px;
+                border-top: double rgb(160, 211, 255);
+                background-color: rgb(196, 227, 255);
+                color: lightslategray;
+                padding: 6px 20px;
+                font-size: smaller;
+            }
+            @media screen and (max-width: 900px) {
+                h1 {
+                    font-size: 1.5em;
+                }
+                nav {
+                    margin-left: 0;
+                }
+                nav > a {
+                    margin: 0 8px;
+                }
+                h1 + input {
+                    margin-left: 20px;
+                    margin-bottom: 8px;
+                }
+                #busan {
+                    display: inline-block;
+                    border: none;
+                    text-align: right;
+                    margin-bottom: 8px;
+                }
+                #sel_area {
+                    margin-left: 30px;
+                    margin-bottom: 8px;
+                }
+                select + input {
+                    margin-left: 30px
+                }
+                #main > h3 {
+                    margin: 2px 17px
+                }
+                h3 + span {
+                    margin: 0 0;
+                }
+                #libName {
+                    margin: 5px 150px;
+                }
+                #map {
+                    width: 90%;
+                    margin: 10px 25px;
+                }
+                #mapExtra {
+                    width: 90%;
+                    margin: 0 0 5px 20px;
+                }
+                #extra {
+                    margin-left: 30px;
+                }
+                aside {
+                    margin: 400px 0 0 30px;
+                }
+                #fourth {
+                    margin: 0 30px;
+                }
+                textarea {
+                    width:110%;
+                    margin-left: 0;
+                }
+                #fifth {
+                    margin: 40px 0 40px 0;
+                    width: 100%;
+                }
+            }
+        </style>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            function showContent(ex) {
+            document.getElementById(ex).style.display = 'inline-block';
+            }
+            function hideContent(ex) {
+                document.getElementById(ex).style.display = 'none';
+            }
+            function whiteNote() {
+                document.getElementById('memo').style.backgroundColor = 'white';
+                document.getElementById('memo').style.color = 'black';
+            }
+            function blackNote() {
+                document.getElementById('memo').style.backgroundColor = 'black';
+                document.getElementById('memo').style.color = 'white';
+            }
+
+            //지역 선택 '도서관 검색' 예외 처리
+            function showAlert(){
+                var existence = document.getElementById('sel_area').value;
+                if (existence === '') {
+                    alert('지역을 선택하세요.');
+                }
+            }
+
+            //도서관명 '결정' 버튼 → 메모에 나타내기
+            function decision() {
+                // radio 버튼 선택 (HTML 문서 내에서 name 속성이 "library"로 설정된 모든 라디오 버튼을 선택)
+                 var radioButtons = document.querySelectorAll('input[type="radio"][name="library"]');
+
+                // radio 버튼 값 (반복문 순회)
+                var theValue;
+                radioButtons.forEach(function(radioButton) {
+                    if (radioButton.checked) {
+                        theValue = radioButton.value;
+                    }
+                });
+
+                // 그 값이 존재 → textarea에 출력, if not, 예외 처리
+                if (theValue) {
+                    var memoTextArea = document.getElementById("memo");
+                    memoTextArea.value = theValue;
+                }
+                else {
+                    alert("도서관을 선택해주세요.\n지역 선택 → 도서관 검색 → 도서관명의 왼쪽 버튼 누르기(택 1)");
+                }
+            }
+
+        </script>
+        
+        <script>
+            //도서관명 (api연결)
+            function displayResponse(){
+                var xhr = new XMLHttpRequest();
+                xhr.withCredentials = true;
+
+                xhr.addEventListener("readystatechange", function() {
+                if(this.readyState === 4) {
+                    console.log(this.responseText);
+
+                    var parsed = JSON.parse(this.responseText);
+                    var libraryItems = parsed.getLibraryInfo.body.items.item;
+                    var ulElement = document.getElementById("names");
+                    ulElement.innerHTML = "";
+
+                    for (var i = 0; i < libraryItems.length; i++) {
+                        var cur = libraryItems[i];
+                        console.log(cur.library_nm);
+
+                        var liElement = document.createElement("li");
+
+                        var radioButton = document.createElement("input");
+                        radioButton.setAttribute("type", "radio");
+                        radioButton.setAttribute("name", "library");
+                        radioButton.setAttribute("id", cur.library_nm);
+                        radioButton.setAttribute("value", cur.library_nm);
+
+                        var labelElement = document.createElement("label");
+                        labelElement.setAttribute("for", cur.library_nm);
+
+                        var linkElement = document.createElement("a");
+                        linkElement.textContent = cur.library_nm;
+                        linkElement.href = cur.library_hompage;
+                        linkElement.target = "_blank";
+                        labelElement.appendChild(linkElement); //label의 자식으로 linkElemnt(하이퍼링크) 추가
+
+                        // li의 자식으로 radioButton과 label 추가
+                        liElement.appendChild(radioButton);
+                        liElement.appendChild(labelElement);
+                        // ul에 li 추가
+                        ulElement.appendChild(liElement);
+                    }
+                }
+                });
+
+                var url = "http://localhost:3000/info"
+                var library_area = document.getElementById("sel_area").value;
+                var encodedLibraryArea = encodeURIComponent(library_area);
+
+                url = url + "?" + "library_area=" + encodedLibraryArea + "&resultType=json";
+
+                xhr.open("GET", url);
+                xhr.send();
+            }
+        
+            //도서 인기 검색어 (api 연결)
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function() {
+            if(this.readyState === 4) {
+                console.log(this.responseText);
+
+            var parsed = JSON.parse(this.responseText);
+            var items = parsed.getBookSearchWordBest.body.items.item;
+
+            // 역순으로 나오기에 reverse 해주기
+            items.reverse();
+
+            var booklist = document.getElementById('booklist');
+            
+            for (var i = 0; i < items.length; i++) {
+                var cur = items[i];
+                console.log(cur.search_word);
+                booklist.innerHTML += "<li>" + cur.search_word + "</li>";
+                }
+            }
+            });
+
+            var url = "http://localhost:3000/book"
+
+            xhr.open("GET", url)
+            xhr.send();
+        </script>
+    </head>
+    <body>
+        <header class="ib">
+            <h1 class="ib"><span class="highlight">스</span>쳐가는 <span class="highlight">도</span>서관&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in 부산</h1>
+            <input type="button" value="스도란?" onclick="showContent('exp')">
+            <input type="button" value="닫기" onclick="hideContent('exp')">
+            <div id="exp" class="ib">
+                약속이 있어서 외출할 때, 시간이 좀 남는 경우 -<br>
+                가볍게 도서관을 이용할 수 있도록 접근성을 높입니다.<br>
+                특히, 단순 행정구역상의 지역명보다, 지도를 활용함으로써 실질적 위치를 파악할 수 있습니다.
+                <p>
+                    <h3>1. 책! 책! 책 책을 읽읍시다.</h3>
+                    도서관에 온 김에 책 구경이라도 해 봐요~<br>
+                    끌리는 책이 인생 책이 될지도?
+                </p>
+                <p>
+                    <h3>2. 우리의 건강과 시간은 소중하니까요.</h3>
+                    어차피 또 만나서 카페를 갈 텐데, 카페인･당 섭취 줄이고 돈도 아낄 수 있어요<br>
+                    자투리 시간일지라도 집중해서 해야 할 일을 도서관에서 처리하기!
+                </p>
+            </div>
+        </header>
+
+        <nav class="ib">
+            <a href="#first">#도서관 검색</a>
+            <a href="#second">#도서관 지도</a>
+            <a href="#third">#도서 인기 검색어</a>
+            <br>
+            <a href="#fourth">#자유로운 메모장</a>
+            <a href="#fifth">#일정･계획표</a>
+        </nav>
+
+        <section id="first">
+            <img src="busan.png" alt="행정지도">
+            <div>
+            <h3>지역 선택</h3>
+            <span id="busan">부산광역시</span>
+            <label for="txt_birth"></label>
+		    <select name="sel_area" id="sel_area">
+                <option value="" disabled selected>구/군</option>
+			    <option value="강서구">강서구</option>
+                <option value="금정구">금정구</option>
+                <option value="기장군">기장군</option>
+                <option value="남구">남구</option>
+                <option value="동구">동구</option>
+                <option value="동래구">동래구</option>
+                <option value="부산진구">부산진구</option>
+                <option value="북구">북구</option>
+                <option value="사상구">사상구</option>
+                <option value="사하구">사하구</option>
+                <option value="서구">서구</option>
+                <option value="수영구">수영구</option>
+                <option value="연제구">연제구</option>
+                <option value="영도구">영도구</option>
+                <option value="중구">중구</option>
+                <option value="해운대구">해운대구</option>
+            </select>
+            <input type="button" value="도서관 검색" onclick="displayResponse(); showAlert()">
+            </div>
+
+            <div id="main" class="ib">
+                <h3>도서관명</h3>
+                <span>도서관명 클릭 시 홈페이지로 이동합니다.</span>
+                <input type="button" value="결정" id="libName" onclick="decision()">
+                <ul id="names">
+                </ul>
+                <!--value가 넘어감-->
+            </div>
+        </section>
+
+        <section id="second">
+            <div id="map"></div>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2475766312867e69d823ea0f8922ab92"></script>
+        <script>
+            var container = document.getElementById('map');
+            var options = {
+                center: new kakao.maps.LatLng(35.187846, 129.070626),
+                level: 9
+            };
+
+		    var map = new kakao.maps.Map(container, options);
+
+            // 마커를 표시할 위치와 title 객체 배열입니다 
+            var positions = [
+                {title: '강서기적의도서관', latlng: new kakao.maps.LatLng(35.086330, 128.904763)},
+                {title: '강서도서관', latlng: new kakao.maps.LatLng(35.180364, 128.956903)},
+                { title: '지사도서관', latlng: new kakao.maps.LatLng(35.150949, 128.831351)},
+                {title: '금샘도서관', latlng: new kakao.maps.LatLng(35.239048, 129.093962)},
+                {title: '금정도서관', latlng: new kakao.maps.LatLng(35.272670, 129.096193)},
+                {title: '서동도서관', latlng: new kakao.maps.LatLng(35.219849, 129.099362)},
+                {title: '고촌어울림도서관', latlng: new kakao.maps.LatLng(35.238648, 129.168611)},
+                {title: '교리도서관', latlng: new kakao.maps.LatLng(35.255171, 129.215381)},
+                {title: '기장도서관', latlng: new kakao.maps.LatLng(35.249730, 129.217301)},
+                {title: '내리새라도서관', latlng: new kakao.maps.LatLng(35.201859, 129.206176)},
+                {title: '대라다목적도서관', latlng: new kakao.maps.LatLng(35.240830, 129.210595)},
+                {title: '정관도서관', latlng: new kakao.maps.LatLng(35.325297, 129.181503)},
+                {title: '정관어린이도서관', latlng: new kakao.maps.LatLng(35.323918, 129.177545)},
+                {title: '남구도서관', latlng: new kakao.maps.LatLng(35.137754, 129.094587)},
+                {title: '분포도서관', latlng: new kakao.maps.LatLng(35.1321, 129.1152)},
+                {title: '동구도서관', latlng: new kakao.maps.LatLng(35.138096, 129.052455)},
+                {title: '동구어린이영어도서관', latlng: new kakao.maps.LatLng(35.134582, 129.042029)},
+                {title: '중앙도서관수정분관', latlng: new kakao.maps.LatLng(35.124683, 129.040506)},
+                {title: '동래읍성도서관', latlng: new kakao.maps.LatLng(35.207070, 129.094834)},
+                {title: '명장도서관', latlng: new kakao.maps.LatLng(35.200921, 129.106546)},
+                {title: '안락누리도서관', latlng: new kakao.maps.LatLng(35.196999, 129.107722)},
+                {title: '부산영어도서관', latlng: new kakao.maps.LatLng(35.157274, 129.051425)},
+                {title: '부산진구기적의도서관', latlng: new kakao.maps.LatLng(35.174056, 129.064700)},
+                {title: '부산진구어린이청소년도서관', latlng: new kakao.maps.LatLng(35.169001, 129.039697)},
+                {title: '부전도서관', latlng: new kakao.maps.LatLng(35.155879, 129.061838)},
+                {title: '시민도서관', latlng: new kakao.maps.LatLng(35.183421, 129.050317)},
+                {title: '구포도서관', latlng: new kakao.maps.LatLng(35.193991, 128.995998)},
+                {title: '금곡도서관', latlng: new kakao.maps.LatLng(35.263281, 129.016716)},
+                {title: '만덕도서관', latlng: new kakao.maps.LatLng(35.207320, 129.037764)},
+                {title: '화명도서관', latlng: new kakao.maps.LatLng(35.232285, 129.009397)},
+                {title: '부산도서관', latlng: new kakao.maps.LatLng(35.172615, 128.985242)},
+                {title: '사상도서관', latlng: new kakao.maps.LatLng(35.1781, 128.9898)},
+                {title: '다대도서관', latlng: new kakao.maps.LatLng(35.050514, 128.964669)},
+                {title: '사하도서관', latlng: new kakao.maps.LatLng(35.103190, 128.990963)},
+                {title: '구덕도서관', latlng: new kakao.maps.LatLng(35.1217, 129.0169)},
+                {title: '망미도서관', latlng: new kakao.maps.LatLng(35.173501, 129.105024)},
+                {title: '수영구도서관', latlng: new kakao.maps.LatLng(35.144386, 129.105317)},
+                {title: '수영구어린이도서관', latlng: new kakao.maps.LatLng(35.159779, 129.105055)},
+                {title: '부산시청열린도서관(들락날락)', latlng: new kakao.maps.LatLng(35.179978, 129.075021)},
+                {title: '연산도서관', latlng: new kakao.maps.LatLng(35.185939, 129.104128)},
+                {title: '연제도서관', latlng: new kakao.maps.LatLng(35.174167, 129.083022)},
+                {title: '영도도서관', latlng: new kakao.maps.LatLng(35.075634, 129.066420)},
+                {title: '영도도서관남향분관', latlng: new kakao.maps.LatLng(35.088314, 129.039107)},
+                {title: '중앙도서관', latlng: new kakao.maps.LatLng(35.110063, 129.026962)},
+                {title: '반송도서관', latlng: new kakao.maps.LatLng(35.225100, 129.148348)},
+                {title: '반여도서관', latlng: new kakao.maps.LatLng(35.201989, 129.133760)},
+                {title: '재송어린이도서관', latlng: new kakao.maps.LatLng(35.189623, 129.118529)},
+                {title: '해운대도서관', latlng: new kakao.maps.LatLng(35.178038, 129.168877)},
+                {title: '해운대도서관우동분관', latlng: new kakao.maps.LatLng(35.168884, 129.155660)},
+                {title: '해운대인문학도서관', latlng: new kakao.maps.LatLng(35.202297, 129.126313)}
+            ];
+
+            // 마커 이미지의 이미지 주소입니다
+            var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+                
+            for (var i = 0; i < positions.length; i ++) {
+                
+                // 마커 이미지의 이미지 크기 입니다
+                var imageSize = new kakao.maps.Size(24, 35); 
+                
+                // 마커 이미지를 생성합니다    
+                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+                
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({
+                    map: map, // 마커를 표시할 지도
+                    position: positions[i].latlng, // 마커를 표시할 위치
+                    title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                    image : markerImage // 마커 이미지 
+                });
+            }
+        </script>
+        <span id="mapExtra">지도에 마우스를 스크롤 및 클릭해서 위치를 이동하세요.<br>
+            마커에 마우스를 올리면 도서관명이 표시됩니다.</span>
+        </section>
+
+        <article id="third">
+            <div id="aboutBooks" class="ib">
+                <h3>도서 인기 검색어&nbsp;&nbsp;</h3>
+                <h4>TOP 10</h4>
+                <ol id="booklist"></ol>
+            </div>
+
+            <input type="button" value="부가정보" onclick="showContent('extra')">
+            <input type="button" value="닫기" onclick="hideContent('extra')">
+            <div id="extra">
+                <span>글자 클릭 시 이동합니다.</span>
+                <ul>
+                    <li><a href="https://library.busan.go.kr/portal/intro/search/indexForAll.do?menu_idx=12" target="_blank">도서 보유 도서관 정보</a></li>
+                    <li><a href="https://library.busan.go.kr/elib/index.do" target="_blank">부산광역시 전자도서관</a></li>
+                </ul>
+            </div>
+        </article>
+
+        <aside>
+            <input type="button" value="흰색 노트" id="firstNote" onclick="whiteNote()">
+            <input type="button" value="검은색 노트" onclick="blackNote()">
+        </aside>
+        
+        <section id="fourth" class="ib">
+            <form>
+                <textarea id="memo" name="memo" rows ="9" cols ="33" placeholder="자유롭게 작성하세요." spellcheck="false"></textarea>
+                <br>
+                <input type="reset" value="메모 초기화">
+            </form>
+        </section>
+         
+        <section id="fifth">
+            <form>
+            <table>
+                <tr>
+                    <th>시각</th>
+                    <th>장소</th>
+                    <th>내용</th>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                </table>
+                <input type="reset" value="표 초기화">
+            </form>
+            </section>
+    
+
+        <footer>부산대학교 컴퓨터공학과 &copy;윤서경 SeoGyeong Yun</footer>
+    </body>
+</html>
